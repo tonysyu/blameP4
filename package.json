@@ -1,0 +1,19 @@
+{
+  "name": "blamer",
+  "version": "1.0.0",
+  "description": "Simple client for p4 annotate",
+  "main": "index.js",
+  "bin": {
+    "blamer": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tony S. Yu",
+  "dependencies": {
+    "electron-prebuilt": "^0.35.1",
+    "mustache": "^2.2.0",
+    "open": "0.0.5",
+    "tmp": "0.0.28"
+  }
+}
