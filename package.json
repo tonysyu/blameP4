@@ -2,18 +2,19 @@
   "name": "blamer",
   "version": "1.0.0",
   "description": "Simple client for p4 annotate",
-  "main": "index.js",
+  "main": "main.js",
   "bin": {
     "blamer": "./index.js"
   },
   "scripts": {
+    "start": "./node_modules/.bin/electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tony S. Yu",
   "dependencies": {
+    "angular": "^1.4.8",
+    "angular-sanitize": "^1.4.8",
     "electron-prebuilt": "^0.35.1",
-    "mustache": "^2.2.0",
-    "open": "0.0.5",
-    "tmp": "0.0.28"
+    "mustache": "^2.2.0"
   }
 }
