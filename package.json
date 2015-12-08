@@ -1,10 +1,10 @@
 {
-  "name": "blamer",
+  "name": "blameP4",
   "version": "1.0.0",
   "description": "Simple client for p4 annotate",
   "main": "main.js",
   "bin": {
-    "blamer": "./index.js"
+    "blameP4": "./index.js"
   },
   "scripts": {
     "start": "./node_modules/.bin/electron .",

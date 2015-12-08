@@ -4,7 +4,7 @@ var child_process = require('child_process');
 var mustache = require('mustache');
 
 
-angular.module('blamer', ['ngSanitize'])
+angular.module('blameP4', ['ngSanitize'])
     .service('BlameService', function () {
         var tableRowTemplate = "<tr><td> {{commit}} </td><td> <code><pre>{{code}}</pre></code> </td><tr>";
         var tableTemplate = "<table>\n{{{body}}}\n</table>";
