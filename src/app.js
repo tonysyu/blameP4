@@ -14,7 +14,7 @@ angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
         $scope.loadFile = function (filename) {
             $scope.htmlContent = '<p>Loading...</p>';
             VCService.blame(filename, function (blameText) {
-                // FIXME: $apply shouldn't be needed, right?
+                // Use $apply since blame command is executed asynchronously.
                 $scope.$apply(function () {
                     $scope.lines = BlameParser.parse(blameText);
                 });

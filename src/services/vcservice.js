@@ -63,6 +63,7 @@ angular.module('blameP4')
             blame: function (filename, callback) {
                 var text = fs.readFileSync(filename, 'utf8');
                 text = addMockCommitHashes(text);
+                // Actual VC service executes commands asynchronously
                 $timeout(function () {
                     callback(text);
                 });
