@@ -1,7 +1,7 @@
 var angular = require('angular');
 
 angular.module('blameP4')
-    .controller('searchBoxController', function($scope, hotkeys) {
+    .controller('searchBoxController', function($scope, hotkeys, $timeout) {
         // Create local `pageSearch` so we don't have to worry about what
         // `this` binds to in closures.
         var pageSearch = this.pageSearch = {
@@ -30,6 +30,10 @@ angular.module('blameP4')
             combo: 'ctrl+f',
             callback: function () {
                 $scope.focusOnSearchBox = true;
+                // Reset focus value so that it can be re-triggered.
+                $timeout(function () {
+                    $scope.focusOnSearchBox = false;
+                });
             }
         });
     })
