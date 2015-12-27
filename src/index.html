@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="css/external/icono.min.css">
   <link rel="stylesheet" href="css/external/pure-min.css">
+  <link rel="stylesheet" href="css/external/hljs/default.min.css">
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/layouts/side-menu.css">
 
@@ -28,7 +29,7 @@
     </div>
 
     <div id="main">
-      <table ng-if="lines" class="pure-table">'
+      <table ng-if="lines" class="pure-table">
         <thead>
           <tr>
             <th>commit</th>
@@ -44,7 +45,7 @@
               </button>
             </td>
 
-            <td class="code"> <code><pre>{{x.code}}</pre></code> </td>
+            <td class="code" ng-bind-html="x.code"></td>
 
           </tr>
         </tbody>

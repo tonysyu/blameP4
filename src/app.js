@@ -4,6 +4,7 @@ var angular = require('angular');
 var angularSanitize = require('angular-sanitize');
 var dialog = require('remote').require('dialog');
 var hotkeys = require('angular-hotkeys');
+var path = require('path');
 
 
 angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
@@ -19,11 +20,13 @@ angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
         };
 
         $scope.loadFile = function (filename) {
-            $scope.htmlContent = '<p>Loading...</p>';
+            // Use file extension (minus leading '.') as the language.
+            var language = path.extname(filename).slice(1);
+
             VCService.blame(filename, function (blameText) {
                 // Use $apply since blame command is executed asynchronously.
                 $scope.$apply(function () {
-                    $scope.lines = BlameParser.parse(blameText);
+                    $scope.lines = BlameParser.parse(blameText, language);
                 });
             });
         };
