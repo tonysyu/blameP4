@@ -2,15 +2,22 @@
 
 var angular = require('angular');
 var angularSanitize = require('angular-sanitize');
+var dialog = require('remote').require('dialog');
 var hotkeys = require('angular-hotkeys');
 
 
 angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
     .controller('BlameAppController', function ($scope, VCService, BlameParser) {
-        $scope.htmlContent = '<p>Select file</p>';
         $scope.describeCommit = function (commitNumber) {
-            VCService.describeCommit(commitNumber, console.log.bind(console));
+            VCService.describeCommit(commitNumber, function (message) {
+                dialog.showMessageBox({
+                    type: 'info',
+                    buttons: ['OK'],
+                    message: message
+                });
+            });
         };
+
         $scope.loadFile = function (filename) {
             $scope.htmlContent = '<p>Loading...</p>';
             VCService.blame(filename, function (blameText) {
