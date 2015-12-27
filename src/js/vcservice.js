@@ -53,6 +53,7 @@ angular.module('blameP4')
         }
         function addMockCommitHashes(text) {
             var lines = text.split(/\r?\n/);
+            lines.unshift("WARNING: P4 not found. Using mock P4 service!");
             lines = lines.map(function(string) {
                 return randomInt(0, 1000) + ': ' + string;
             });
