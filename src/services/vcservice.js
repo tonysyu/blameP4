@@ -23,9 +23,8 @@ angular.module('blameP4')
 
         if (p4available()) {
             return $injector.get('_p4VCService');
-        } else {
-            return $injector.get('_mockVCService');
         }
+        return $injector.get('_mockVCService');
     })
     .service('_p4VCService', function () {
         "use strict";
@@ -44,7 +43,7 @@ angular.module('blameP4')
             },
         };
     })
-    .service('_mockVCService', function ($timeout) {
+    .service('_mockVCService', function () {
         // Mock version control service
         // `blame` adds fake change list ids to each line of a file.
         "use strict";
@@ -61,13 +60,13 @@ angular.module('blameP4')
         }
         return {
             blame: function (filename, callback) {
-                var text = fs.readFileSync(filename, 'utf8');
-                text = addMockCommitHashes(text);
-                // Actual VC service executes commands asynchronously
-                $timeout(function () {
+                fs.readFile(filename, 'utf8', function (error, text) {
+                    if (error) {
+                        throw error;
+                    }
+                    text = addMockCommitHashes(text);
                     callback(text);
                 });
             },
         };
-    })
-
+    });
