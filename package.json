@@ -13,6 +13,7 @@
   "author": "Tony S. Yu",
   "dependencies": {
     "angular": "^1.4.8",
+    "angular-hotkeys": "^1.6.0",
     "angular-sanitize": "^1.4.8",
     "electron-prebuilt": "^0.35.1",
     "mustache": "^2.2.0"

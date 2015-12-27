@@ -3,10 +3,11 @@
 var angular = require('angular');
 var angularSanitize = require('angular-sanitize');
 var child_process = require('child_process');
+var hotkeys = require('angular-hotkeys');
 var mustache = require('mustache');
 
 
-angular.module('blameP4', ['ngSanitize'])
+angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
     .service('BlameFormatter', function () {
         var tableRowTemplate = "<tr><td> {{commit}} </td><td> <code><pre>{{code}}</pre></code> </td><tr>";
         var tableTemplate = "<table>\n{{{body}}}\n</table>";
