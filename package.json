@@ -2,6 +2,8 @@
   "name": "blameP4",
   "version": "1.0.0",
   "description": "Simple client for p4 annotate",
+  "repository" : "tonysyu/blameP4",
+  "license" : "BSD",
   "main": "main.js",
   "bin": {
     "blameP4": "./index.js"
