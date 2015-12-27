@@ -6,3 +6,7 @@ body {
 #search-box {
     margin-top: 10px;
 }
+
+pre {
+    margin: 0px;
+}
