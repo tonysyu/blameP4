@@ -1,3 +1,5 @@
+/*global require*/
+
 var angular = require('angular');
 var angularSanitize = require('angular-sanitize');
 var child_process = require('child_process');
@@ -5,7 +7,7 @@ var mustache = require('mustache');
 
 
 angular.module('blameP4', ['ngSanitize'])
-    .service('BlameService', function () {
+    .service('BlameFormatter', function () {
         var tableRowTemplate = "<tr><td> {{commit}} </td><td> <code><pre>{{code}}</pre></code> </td><tr>";
         var tableTemplate = "<table>\n{{{body}}}\n</table>";
 
@@ -24,23 +26,13 @@ angular.module('blameP4', ['ngSanitize'])
         }
 
         return {
-            createBlameTable: function (filename, callback) {
-                var annotateCmd = 'p4 annotate -I -q ' + filename;
-                var execOptions = {maxBuffer: 1024 * 2000};
-
-                child_process.exec(annotateCmd, execOptions, function (error, stdout, stderr) {
-                    if (error) {
-                        throw error;
-                    }
-                    callback(blameOutputToTable(stdout));
-                });
-            },
+            format: blameOutputToTable
         };
     })
     .directive("loadFile", function () {
         "use strict";
         return {
-            link: function (scope, element, attributes) {
+            link: function (scope, element) {
                 element.bind("change", function (changeEvent) {
                     var file = changeEvent.target.files[0];
                     if (file) {
@@ -53,14 +45,14 @@ angular.module('blameP4', ['ngSanitize'])
             }
         };
     })
-    .controller('BlameAppController', function ($scope, BlameService) {
+    .controller('BlameAppController', function ($scope, VCService, BlameFormatter) {
         $scope.htmlContent = '<p>Select file</p>';
         $scope.loadFile = function (filename) {
             $scope.htmlContent = '<p>Loading...</p>';
-            BlameService.createBlameTable(filename, function (html) {
+            VCService.blame(filename, function (html) {
                 // FIXME: $apply shouldn't be needed, right?
                 $scope.$apply(function () {
-                    $scope.htmlContent = html;
+                    $scope.htmlContent = BlameFormatter.format(html);
                 });
             });
         };
