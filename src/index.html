@@ -5,21 +5,32 @@
   <meta charset="UTF-8">
   <title>BlameP4</title>
 
+  <link rel="stylesheet" href="css/external/icono.min.css">
   <link rel="stylesheet" href="css/external/pure-min.css">
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/layouts/side-menu.css">
 
 </head>
 <body>
 
-  <div ng-app="blameP4" ng-controller="BlameAppController">
+  <div id="layout" ng-app="blameP4" ng-controller="BlameAppController">
 
-    <form>
-      <input type="file" load-file />
-    </form>
+    <div id="menu">
+      <div class="pure-menu">
 
-    <div id="search-box" search-box></div>
+        <form>
+          <input type="file" load-file />
+        </form>
 
-    <div ng-bind-html="htmlContent"></div>
+        <div id="search-box" search-box></div>
+
+      </div>
+    </div>
+
+    <div id="main">
+      <div ng-bind-html="htmlContent"></div>
+    </div>
+
   </div>
 
   <script src="js/app.js"></script>

@@ -1,3 +1,8 @@
+body {
+    color: #777;
+    font-size: 14px;
+}
+
 #search-box {
     margin-top: 10px;
 }
