@@ -41,9 +41,19 @@ angular.module('blameP4')
                     callback(stdout);
                 });
             },
+            describeCommit: function (commitID, callback) {
+                var cmd = 'p4 describe ' + commitID;
+
+                child_process.exec(cmd, function (error, stdout) {
+                    if (error) {
+                        throw error;
+                    }
+                    callback(stdout);
+                });
+            },
         };
     })
-    .service('_mockVCService', function () {
+    .service('_mockVCService', function ($timeout) {
         // Mock version control service
         // `blame` adds fake change list ids to each line of a file.
         "use strict";
@@ -66,6 +76,12 @@ angular.module('blameP4')
                     }
                     text = addMockCommitHashes(text);
                     callback(text);
+                });
+            },
+            describeCommit: function (commitID, callback) {
+                // Actual VC service executes commands asynchronously
+                $timeout(function () {
+                    callback("Mock commit message for commit " + commitID);
                 });
             },
         };

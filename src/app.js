@@ -9,7 +9,7 @@ angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
     .controller('BlameAppController', function ($scope, VCService, BlameParser) {
         $scope.htmlContent = '<p>Select file</p>';
         $scope.describeCommit = function (commitNumber) {
-            console.log(commitNumber);
+            VCService.describeCommit(commitNumber, console.log.bind(console));
         };
         $scope.loadFile = function (filename) {
             $scope.htmlContent = '<p>Loading...</p>';
