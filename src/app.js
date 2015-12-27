@@ -6,14 +6,17 @@ var hotkeys = require('angular-hotkeys');
 
 
 angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
-    .controller('BlameAppController', function ($scope, VCService, BlameFormatter) {
+    .controller('BlameAppController', function ($scope, VCService, BlameParser) {
         $scope.htmlContent = '<p>Select file</p>';
+        $scope.describeCommit = function (commitNumber) {
+            console.log(commitNumber);
+        };
         $scope.loadFile = function (filename) {
             $scope.htmlContent = '<p>Loading...</p>';
-            VCService.blame(filename, function (html) {
+            VCService.blame(filename, function (blameText) {
                 // FIXME: $apply shouldn't be needed, right?
                 $scope.$apply(function () {
-                    $scope.htmlContent = BlameFormatter.format(html);
+                    $scope.lines = BlameParser.parse(blameText);
                 });
             });
         };

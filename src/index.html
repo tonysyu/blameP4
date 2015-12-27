@@ -28,7 +28,28 @@
     </div>
 
     <div id="main">
-      <div ng-bind-html="htmlContent"></div>
+      <table ng-if="lines" class="pure-table">'
+        <thead>
+          <tr>
+            <th>commit</th>
+            <th>code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in lines">
+
+            <td class="commit">
+              <button ng-click="describeCommit(x.commit)">
+                {{x.commit}}
+              </button>
+            </td>
+
+            <td class="code"> <code><pre>{{x.code}}</pre></code> </td>
+
+          </tr>
+        </tbody>
+      </table>
+
     </div>
 
   </div>
@@ -38,7 +59,7 @@
   <script src="components/search-box/index.js"></script>
   <script src="directives/focusWhen.js"></script>
   <script src="directives/loadFile.js"></script>
-  <script src="services/blameFormatter.js"></script>
+  <script src="services/blameParser.js"></script>
   <script src="services/vcservice.js"></script>
 
 </body>
