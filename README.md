@@ -9,8 +9,9 @@ code, a.k.a. "blaming" others (or your past self). `blameP4` is a simple
 frontend for viewing annotated code and the associated commit message.
 
 This is mainly a pet project for scratching an itch and learning a bit more
-about [AngularJS](https://angularjs.org/),
+about [AngularJS](https://angularjs.org/)
 and [Electron](http://electron.atom.io/).
+Don't expect stability or maintenance.
 
 
 Using blameP4
