@@ -56,12 +56,18 @@ angular.module('blameP4')
         // Mock version control service
         // `blame` adds fake change list ids to each line of a file.
         "use strict";
+
+        var warningAboutMock = "WARNING: P4 not found. Using mock P4 service!";
+
+        console.warn(warningAboutMock);
+
         function randomInt(min, max) {
             return Math.floor(Math.random() * (max - min)) + min;
         }
+
         function addMockCommitHashes(text) {
             var lines = text.split(/\r?\n/);
-            lines.unshift("WARNING: P4 not found. Using mock P4 service!");
+            lines.unshift(warningAboutMock);
             lines = lines.map(function(string) {
                 return randomInt(0, 1000) + ': ' + string;
             });
