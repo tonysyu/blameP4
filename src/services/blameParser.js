@@ -13,11 +13,11 @@ angular.module('blameP4')
          *
          * This modifies `code` in rows array in-place.
          */
-        function _highlightCode(rows) {
+        function _highlightCode(rows, language) {
             // Join code to contiguous block before highlighting since
             // individual lines generally aren't valid code.
             var code = rows.map(function (x) { return x.code; }).join('\n');
-            code = hljs.highlight('js', code).value;
+            code = hljs.highlight(language, code).value;
             var hlLines = code.split('\n');
 
             var i;
@@ -41,7 +41,7 @@ angular.module('blameP4')
             });
 
             if (language) {
-                _highlightCode(rows);
+                _highlightCode(rows, language);
             }
 
             return rows;
