@@ -43,7 +43,7 @@ angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
         // Ignore first two arguments (electron and root-directory).
         var cmdArgs = remote.process.argv.slice(2);
 
-        if (cmdArgs.length === 1) {
+        if (cmdArgs.length === 1 && cmdArgs[0]) {
             $scope.loadFile(cmdArgs[0]);
         } else if (cmdArgs.length > 1) {
             console.error("Expected at most 1 argument but given: " + cmdArgs);
