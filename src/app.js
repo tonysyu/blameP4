@@ -2,7 +2,8 @@
 
 var angular = require('angular');
 var angularSanitize = require('angular-sanitize');
-var dialog = require('remote').require('dialog');
+var remote = require('remote');
+var dialog = remote.require('dialog');
 var hotkeys = require('angular-hotkeys');
 var path = require('path');
 
@@ -30,4 +31,13 @@ angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
                 });
             });
         };
+
+        // Ignore first two arguments (electron and root-directory).
+        var cmdArgs = remote.process.argv.slice(2);
+
+        if (cmdArgs.length === 1) {
+            $scope.loadFile(cmdArgs[0]);
+        } else if (cmdArgs.length > 1) {
+            console.error("Expected at most 1 argument but given: " + cmdArgs);
+        }
     });
