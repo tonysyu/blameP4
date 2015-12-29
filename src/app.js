@@ -10,6 +10,11 @@ var path = require('path');
 
 angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
     .controller('BlameAppController', function ($scope, VCService, BlameParser) {
+        $scope.selectedFile = {
+            name: '',
+            path: '',
+        };
+
         $scope.describeCommit = function (commitNumber) {
             VCService.describeCommit(commitNumber, function (message) {
                 dialog.showMessageBox({
@@ -23,6 +28,9 @@ angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
         $scope.loadFile = function (filename) {
             // Use file extension (minus leading '.') as the language.
             var language = path.extname(filename).slice(1);
+
+            $scope.selectedFile.name = path.basename(filename);
+            $scope.selectedFile.path = path.resolve(filename);
 
             VCService.blame(filename, function (blameText) {
                 // Use $apply since blame command is executed asynchronously.

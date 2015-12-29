@@ -20,8 +20,19 @@
       <div class="pure-menu">
 
         <form>
-          <input type="file" load-file />
+          <div id="file-input">
+            <div class="pure-button pure-button-primary">
+              <span>Open file...</span>
+              <input type="file" load-file />
+            </div>
+          </div>
         </form>
+
+        <div id="selected-file" ng-attr-title="{{selectedFile.path}}">
+          {{selectedFile.name}}
+        </div>
+
+        <hr/>
 
         <div id="search-box" search-box></div>
 

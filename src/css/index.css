@@ -11,3 +11,37 @@ pre {
     font-family: "Lucida Console", Monaco, monospace;
     margin: 0px;
 }
+
+#menu hr {
+    border-color: #555;
+    margin: 1em 0px;
+}
+
+#selected-file {
+    text-align: center;
+    height: 1em;
+}
+
+/*
+ * Custom file-input button taken from:
+ * http://geniuscarrier.com/how-to-style-a-html-file-upload-button-in-pure-css/
+ */
+
+#file-input {
+    position: relative;
+    overflow: hidden;
+    width: 100px;
+    margin: 1em auto;
+}
+
+#file-input input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
