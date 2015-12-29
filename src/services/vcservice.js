@@ -11,14 +11,13 @@ angular.module('blameP4')
         "use strict";
 
         function p4available() {
-            return false;
-            //var p4cmd = 'p4 -h';
-            //try {
-                //child_process.execSync(p4cmd);
-            //} catch(error) {
-                //return false;
-            //}
-            //return true;
+            var p4cmd = 'p4 -h';
+            try {
+                child_process.execSync(p4cmd);
+            } catch(error) {
+                return false;
+            }
+            return true;
         }
 
         if (p4available()) {
