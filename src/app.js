@@ -35,9 +35,6 @@ angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
         $scope.loadFile = function (filename) {
             $scope.inputState = $scope.INPUT_STATE.LOADING;
 
-            // Use file extension (minus leading '.') as the language.
-            var language = path.extname(filename).slice(1);
-
             $scope.selectedFile.name = path.basename(filename);
             $scope.selectedFile.path = path.resolve(filename);
 
@@ -46,7 +43,7 @@ angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
             VCService.blame(filename, function (blameText) {
                 // Use $apply since blame command is executed asynchronously.
                 $scope.$apply(function () {
-                    $scope.lines = BlameParser.parse(blameText, language);
+                    $scope.lines = BlameParser.parse(blameText);
                     $scope.inputState = $scope.INPUT_STATE.FILE_SELECTED;
                     console.log("Load " + $scope.selectedFile.path + " complete.");
                 });
