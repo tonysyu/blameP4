@@ -30,6 +30,7 @@ angular.module('blameP4')
 
         return {
             blame: function (filename, callback) {
+                console.log("Annotate " + filename + " ...");
                 var cmd = 'p4 annotate -I -q ' + filename;
                 var opts = {maxBuffer: 1024 * 2000};
 
@@ -37,16 +38,19 @@ angular.module('blameP4')
                     if (error) {
                         throw error;
                     }
+                    console.log("Annotate " + filename + " complete.");
                     callback(stdout);
                 });
             },
             describeCommit: function (commitID, callback) {
+                console.log("Describe commit " + commitID + " ...");
                 var cmd = 'p4 describe ' + commitID;
 
                 child_process.exec(cmd, function (error, stdout) {
                     if (error) {
                         throw error;
                     }
+                    console.log("Describe commit " + commitID + " complete.");
                     callback(stdout);
                 });
             },

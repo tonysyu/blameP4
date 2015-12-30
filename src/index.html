@@ -40,7 +40,9 @@
     </div>
 
     <div id="main">
-      <table ng-if="lines" class="pure-table">
+      <span ng-if="inputState === INPUT_STATE.NO_FILE">Open file for analysis</span>
+      <span ng-if="inputState === INPUT_STATE.LOADING">Loading...</span>
+      <table ng-if="inputState === INPUT_STATE.FILE_SELECTED" class="pure-table">
         <thead>
           <tr>
             <th>commit</th>

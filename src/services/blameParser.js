@@ -35,10 +35,13 @@ angular.module('blameP4')
             var pair;
             var lines = text.split(/\r?\n/);
             var rows = [];
+
+            console.log("Parse blame output ...");
             lines.forEach(function (line) {
                 pair = line.split(/: (.+)?/);  // Split on first colon.
                 rows.push({commit: pair[0], code: pair[1]});
             });
+            console.log("Parse blame output complete.");
 
             if (language) {
                 _highlightCode(rows, language);
