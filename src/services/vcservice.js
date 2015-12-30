@@ -44,7 +44,7 @@ angular.module('blameP4')
             },
             describeCommit: function (commitID, callback) {
                 console.log("Describe commit " + commitID + " ...");
-                var cmd = 'p4 describe ' + commitID;
+                var cmd = 'p4 describe -s ' + commitID;
 
                 child_process.exec(cmd, function (error, stdout) {
                     if (error) {
