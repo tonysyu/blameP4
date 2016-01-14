@@ -17,7 +17,16 @@ Don't expect stability or maintenance.
 Using blameP4
 -------------
 
-To install, just navigate to the directory containing this file and install:
+### Prerequisites
+
+Before installing `blameP4`, you'll need to have a copy of
+[this repo](https://github.com/tonysyu/blameP4),
+[node.js](https://nodejs.org/en/download/), and a working install of perforce.
+
+
+### Installation and use
+
+After that, just navigate to the directory containing this file and install:
 
     cd path/to/this/directory
     npm install
