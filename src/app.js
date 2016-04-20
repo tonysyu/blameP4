@@ -9,7 +9,7 @@ var path = require('path');
 
 
 angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
-    .controller('BlameAppController', function ($scope, VCService, BlameParser) {
+    .controller('BlameAppController', function ($scope, $timeout, VCService, BlameParser) {
         $scope.INPUT_STATE = {
             NO_FILE: 0,
             FILE_SELECTED: 1,
@@ -50,12 +50,16 @@ angular.module('blameP4', ['ngSanitize', 'cfp.hotkeys'])
             });
         };
 
-        // Ignore first two arguments (electron and root-directory).
-        var cmdArgs = remote.process.argv.slice(2);
+        function loadFileFromCommandLine() {
+            // Ignore first two arguments (electron and root-directory).
+            var cmdArgs = remote.process.argv.slice(2);
 
-        if (cmdArgs.length === 1 && cmdArgs[0]) {
-            $scope.loadFile(cmdArgs[0]);
-        } else if (cmdArgs.length > 1) {
-            console.error("Expected at most 1 argument but given: " + cmdArgs);
+            if (cmdArgs.length === 1 && cmdArgs[0]) {
+                $scope.loadFile(cmdArgs[0]);
+            } else if (cmdArgs.length > 1) {
+                console.error("Expected at most 1 argument but given: " + cmdArgs);
+            }
         }
+
+        $timeout(loadFileFromCommandLine);
     });

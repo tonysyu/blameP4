@@ -22,6 +22,10 @@ pre {
     height: 1em;
 }
 
+.ng-cloak {
+  display: none !important;
+}
+
 /*
  * Custom file-input button taken from:
  * http://geniuscarrier.com/how-to-style-a-html-file-upload-button-in-pure-css/

@@ -28,8 +28,13 @@
           </div>
         </form>
 
-        <div id="selected-file" ng-attr-title="{{selectedFile.path}}">
+        <div
+            id="selected-file"
+            class="ng-cloak"
+            ng-attr-title="{{selectedFile.path}}">
+
           {{selectedFile.name}}
+
         </div>
 
         <hr/>
@@ -40,15 +45,21 @@
     </div>
 
     <div id="main">
-      <span ng-if="inputState === INPUT_STATE.NO_FILE">Open file for analysis</span>
+      <span ng-if="inputState === INPUT_STATE.NO_FILE">
+        Open file for analysis
+      </span>
       <span ng-if="inputState === INPUT_STATE.LOADING">Loading...</span>
-      <table ng-if="inputState === INPUT_STATE.FILE_SELECTED" class="pure-table">
+      <table
+        ng-if="inputState === INPUT_STATE.FILE_SELECTED"
+        class="pure-table ng-cloak">
+
         <thead>
           <tr>
             <th>commit</th>
             <th>code</th>
           </tr>
         </thead>
+
         <tbody>
           <tr ng-repeat="x in lines">
 
@@ -62,6 +73,7 @@
 
           </tr>
         </tbody>
+
       </table>
 
     </div>
